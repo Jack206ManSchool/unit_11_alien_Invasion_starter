@@ -5,11 +5,20 @@ class Settings:
         """ Initialize the game's settings. """
         # Screen settings
         
-        # Edited from this because it wasn't fitting on the screen
-        # self.screen_width = 1200
-        # self.screen_height = 800
-        self.screen_width = 600
-        self.screen_height = 400
+        # The resolution was glitching out a bit because of my choice of display.
+        # Because of this, I added a simple additional configuration.
+        
+        self.displayResolutionMode = 2
+        
+        if(self.displayResolutionMode == 0):
+            self.screen_width = 1200
+            self.screen_height = 800
+        elif(self.displayResolutionMode == 1):
+            self.screen_width = 600
+            self.screen_height = 400
+        elif(self.displayResolutionMode == 2):
+            self.screen_width = 3840
+            self.screen_height = 2160
 
         self.bg_color = (230, 230, 230)
 
