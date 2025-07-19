@@ -2,7 +2,7 @@
 Program Name: alien_invasion.py
 Author Name: Jack Crawford (using python crash course example as base)
 Purpose: Running the main alien invasion game code. 
-Date: 7/13/25
+Date: 7/18/25
 '''
 
 import sys
@@ -61,13 +61,13 @@ class AlienInvasion:
     
     def _check_keydown_events(self, event):
         """ Respond to keypresses. """
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
             self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
             self.ship.moving_left = True
         elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
             sys.exit()
-        elif event.key == pygame.K_SPACE:
+        elif event.key == pygame.K_SPACE or event.key == pygame.K_UP or event.key == pygame.K_w:
             self._fire_bullet()
         elif event.key == pygame.K_f:
             if(self.screenModeToggle == True):
@@ -78,9 +78,9 @@ class AlienInvasion:
 
     def _check_keyup_events(self, event):
         """ Respond to key releases. """
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
             self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
             self.ship.moving_left = False
     
     def _fire_bullet(self):
