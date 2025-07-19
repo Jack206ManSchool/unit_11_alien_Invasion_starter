@@ -5,9 +5,11 @@ class Ship:
 
     def __init__(self, ai_game):
         """ Initialize the ship and set its starting position. """
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
-        self.screen_rect = ai_game.screen.get_rect()
+        
+        ai_game_var = ai_game
+        self.screenResCalc(ai_game_var)
+
+        self.settings = ai_game_var.settings
 
         # Load the ship image and get its rect.
         self.image = pygame.image.load('Assets/images/ship.bmp')
@@ -23,6 +25,13 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
 
+    def screenResCalc(self, aiG, midB=False):
+        self.screen = aiG.screen
+        self.screen_rect = aiG.screen.get_rect()
+        if(midB == True):
+            self.rect.midbottom = self.screen_rect.midbottom
+            self.x = float(self.rect.x)
+
     def update(self):
         """ Update the ship's position based on the movement flag. """
         # Update the ship's position, not the rect
@@ -30,7 +39,6 @@ class Ship:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
-        
         # Update rect object from self.x
         self.rect.x = self.x
 

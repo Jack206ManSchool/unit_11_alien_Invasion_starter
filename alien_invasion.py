@@ -14,15 +14,24 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.settings.screen_width = self.screen.get_rect().width
-        self.settings.screen_height = self.screen.get_rect().height
+        # True = Fullscreen, False = Windowed
+        self.screenModeToggle = False
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
         pygame.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
-    
+
+    def screenMode(self, inputBool):
+        if(inputBool == False):
+            self.settings.setScreenRes(self.settings.displayResolutionMode, self.ship)
+            self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+            self.ship.screenResCalc(self, True)
+        elif(inputBool == True):
+            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            self.settings.setScreenRes(0, self.ship, self.screen.get_rect().width, self.screen.get_rect().height)
+
     def run_game(self):
         """ Start the main loop for the game. """
         while True:
@@ -48,10 +57,16 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-        elif event.key == pygame.K_q:
+        elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_f:
+            if(self.screenModeToggle == True):
+                self.screenModeToggle = False
+            else:
+                self.screenModeToggle = True
+            self.screenMode(self.screenModeToggle)
 
     def _check_keyup_events(self, event):
         """ Respond to key releases. """
@@ -74,17 +89,32 @@ class AlienInvasion:
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
+                bullet.is_blast = True 
+            if bullet.blast_timer <= 0:
                 self.bullets.remove(bullet)
-        print(len(self.bullets))
+        #print(len(self.bullets))
 
     def _update_screen(self):
             """ Update images on screen, and flip to the new screen. """
-            self.screen.fill(self.settings.bg_color)
+            self._render_Background()
+
             for bullet in self.bullets.sprites():
                 bullet.draw_bullet()
             self.ship.blitme()
 
             pygame.display.flip()
+
+    def _render_Background(self):
+        """ Make a background using a continuously repeating image. (uses background.bmp) """
+        bg_w_counter = 0
+        bg_h_counter = 0
+        while(bg_h_counter <= (self.settings.screen_height)):
+            while(bg_w_counter <= (self.settings.screen_width)):
+                self.screen.blit(self.settings.bg_image, (bg_w_counter, bg_h_counter))
+                bg_w_counter += self.settings.bg_rect.width
+            bg_w_counter = 0
+            bg_h_counter += self.settings.bg_rect.height
+        #self.screen.fill(self.settings.bg_color)
 
 if __name__ == '__main__':
     # Make a game instance, and run the game
