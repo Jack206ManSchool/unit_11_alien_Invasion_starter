@@ -1,3 +1,10 @@
+'''
+Program Name: ship.py
+Author Name: Jack Crawford (using python crash course example as base)
+Purpose: Running the code for the ship object.
+Date: 7/13/25
+'''
+
 import pygame
 
 class Ship:
@@ -12,7 +19,7 @@ class Ship:
         self.settings = ai_game_var.settings
 
         # Load the ship image and get its rect.
-        self.image = pygame.image.load('Assets/images/ship.bmp')
+        self.image = pygame.image.load('Assets/images/ship.png')
         self.rect = self.image.get_rect()
 
         # Start each new ship at the bottom center of the screen
@@ -26,6 +33,7 @@ class Ship:
         self.moving_left = False
 
     def screenResCalc(self, aiG, midB=False):
+        """ Fixes ship positioning on resolution change. """
         self.screen = aiG.screen
         self.screen_rect = aiG.screen.get_rect()
         if(midB == True):

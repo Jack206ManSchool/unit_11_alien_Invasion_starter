@@ -1,3 +1,10 @@
+'''
+Program Name: alien_invasion.py
+Author Name: Jack Crawford (using python crash course example as base)
+Purpose: Running the main alien invasion game code. 
+Date: 7/13/25
+'''
+
 import sys
 
 import pygame
@@ -24,6 +31,7 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
 
     def screenMode(self, inputBool):
+        """ Sets the screen to be either windowed or fullscreen. """
         if(inputBool == False):
             self.settings.setScreenRes(self.settings.displayResolutionMode, self.ship)
             self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))

@@ -1,3 +1,10 @@
+'''
+Program Name: bullet.py
+Author Name: Jack Crawford (using python crash course example as base)
+Purpose: Running the code for the bullet/laser object.
+Date: 7/13/25
+'''
+
 import pygame
 from pygame.sprite import Sprite
 
@@ -11,7 +18,7 @@ class Bullet(Sprite):
         self.image = self.settings.bullet_image
         self.bullet_resolution = self.settings.bullet_image.get_rect()
         self.is_blast = False
-        self.blast_timer = 120
+        self.blast_timer = 90
         #self.color = self.settings.bullet_color
 
         # Create a bullet rect at (0, 0) and then set the correct position.
@@ -28,23 +35,18 @@ class Bullet(Sprite):
             self.y -= self.settings.bullet_speed
             # Update the rect position
             self.rect.y = self.y
-
-    def draw_blast(self):
-        """ Move the bullet up the screen. """
-
     
     def draw_bullet(self):
-        """ Draw the bullet to the screen. """
-        
+        """ Draw the bullet or blast to the screen. """
         if self.is_blast == False:
-            temp1 = 0
-            temp2 = 0
-            while(temp2 < (self.settings.bullet_height*2)):
-                while(temp1 < (self.settings.bullet_width*2)):
-                    self.screen.blit(self.settings.bullet_image, ((self.rect.x+temp1, self.rect.y+temp2)))
-                    temp1 += self.bullet_resolution.width
-                temp1 = 0
-                temp2 += self.bullet_resolution.height
+            bullet_w_counter = 0
+            bullet_h_counter = 0
+            while(bullet_h_counter < (self.settings.bullet_height*2)):
+                while(bullet_w_counter < (self.settings.bullet_width*2)):
+                    self.screen.blit(self.settings.bullet_image, ((self.rect.x+bullet_w_counter, self.rect.y+bullet_h_counter)))
+                    bullet_w_counter += self.bullet_resolution.width
+                bullet_w_counter = 0
+                bullet_h_counter += self.bullet_resolution.height
         elif self.is_blast == True:
             if self.blast_timer > 0:
                 self.screen.blit(self.settings.blast_image, 
