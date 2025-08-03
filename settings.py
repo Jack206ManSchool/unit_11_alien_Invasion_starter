@@ -7,7 +7,7 @@ class Settings:
         self.screen_w = 800
         self.screen_h = 600
         self.FPS = 60
-        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'ImagesProvided' / 'Starbasesnow.png'
+        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'background.png'
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship.png'
         self.ship_w = 40
