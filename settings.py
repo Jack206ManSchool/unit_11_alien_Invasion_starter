@@ -1,33 +1,31 @@
-class Settings: 
-    """ A class to store all settings for Alien Invasion. """
+from pathlib import Path
+
+class Settings:
 
     def __init__(self):
-        """ Initialize the game's settings. """
-        # Screen settings
-        
-        # The resolution was glitching out a bit because of my choice of display.
-        # Because of this, I added a simple additional configuration.
-        
-        self.displayResolutionMode = 2
-        
-        if(self.displayResolutionMode == 0):
-            self.screen_width = 1200
-            self.screen_height = 800
-        elif(self.displayResolutionMode == 1):
-            self.screen_width = 600
-            self.screen_height = 400
-        elif(self.displayResolutionMode == 2):
-            self.screen_width = 3840
-            self.screen_height = 2160
+        self.name: str = 'Alien Invasion'
+        self.screen_w = 600
+        self.screen_h = 400
+        self.FPS = 60
+        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'ImagesProvided' / 'Starbasesnow.png'
 
-        self.bg_color = (230, 230, 230)
+        self.ship_file = Path.cwd() / 'Assets' / 'images' / "ImagesProvided" / 'ship2(no bg).png'
+        self.ship_w = 40
+        self.ship_h = 60
+        self.ship_speed = 5
+        self.starting_ship_count = 3
 
-        # Ship settings
-        self.ship_speed = 1.5
+        self.bullet_file = Path.cwd() / 'Assets' / 'images' / "ImagesProvided" / 'laserBlast.png'
+        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
+        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
+        self.bullet_speed = 7
+        self.bullet_w = 25
+        self.bullet_h = 80
+        self.bullet_amount = 5
 
-        # Bullet settings
-        self.bullet_speed = 2.0
-        self.bullet_width = 3
-        self.bullet_height = 15
-        self.bullet_color = (60, 60, 60)
-        self.bullets_allowed = 3
+        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'ImagesProvided' / 'enemy_4.png'
+        self.alien_w = 40
+        self.alien_h = 40
+        self.fleet_speed = 2
+        self.fleet_direction = 1
+        self.fleet_drop_speed = 40
