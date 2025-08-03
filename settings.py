@@ -15,7 +15,7 @@ class Settings:
         self.ship_speed = 5
         self.starting_ship_count = 3
 
-        self.bullet_file = Path.cwd() / 'Assets' / 'images' / "ImagesProvided" / 'laserBlast.png'
+        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laser_alt.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.bullet_speed = 7
@@ -23,7 +23,7 @@ class Settings:
         self.bullet_h = 80
         self.bullet_amount = 5
 
-        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'ImagesProvided' / 'enemy_4.png'
+        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_temp.png'
         self.alien_w = 40
         self.alien_h = 40
         self.fleet_speed = 2
