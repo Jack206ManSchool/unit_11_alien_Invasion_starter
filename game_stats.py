@@ -17,11 +17,12 @@ class GameStats():
 
     def init_saved_scores(self):
         self.path = self.settings.scores_file
-        if self.path.exists() and self.path.stat.__sizeof__() > 20:
+        if self.path.exists() and len(self.path.read_text()) > 0:
+            print(self.path.stat.__sizeof__())
             contents = self.path.read_text()
             scores = json.loads(contents)
             self.hi_score = scores.get('hi_score', 0)
-        else:
+        else: 
             self.hi_score = 0
             self.save_scores()
             # Save the file
