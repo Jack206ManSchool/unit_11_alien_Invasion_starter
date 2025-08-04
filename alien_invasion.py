@@ -81,6 +81,7 @@ class AlienInvasion:
             # Update game stats level
             self.game_stats.update_level()
             # Update HUD view
+            self.HUD.update_level()
 
     def _check_game_status(self):
         if self.game_stats.ships_left > 0:
