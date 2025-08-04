@@ -44,10 +44,12 @@ class AlienInvasion:
 
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
-        self.alien_fleet.create_fleet()
+        self.alien_fleet.create_fleet(False)
 
         self.play_button = Button(self, 'Play')
         self.game_active = False
+
+        self.finished_intro = False
 
     def run_game(self):
         # Game loop
@@ -79,7 +81,7 @@ class AlienInvasion:
             self.HUD.update_scores()
         
         if self.alien_fleet.check_destroyed_status():
-            self._reset_level()
+            self._reset_level(False)
             self.settings.increase_difficulty()
             # Update game stats level
             self.game_stats.update_level()
@@ -91,21 +93,21 @@ class AlienInvasion:
     def _check_game_status(self):
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
-            self._reset_level()
+            self._reset_level(False)
             sleep(0.5)
         else:
             self.game_active = False
 
-    def _reset_level(self):
+    def _reset_level(self, start_mode):
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
-        self.alien_fleet.create_fleet()
+        self.alien_fleet.create_fleet(start_mode)
 
     def restart_game(self):
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
-        self._reset_level()
+        self._reset_level(True)
         self.ship._center_ship()
         self.game_active = True
         pygame.mouse.set_visible(False)
@@ -116,7 +118,7 @@ class AlienInvasion:
         self.alien_fleet.draw()
         self.HUD.draw()
 
-        if not self.game_active:
+        if not self.game_active and not self.finished_intro:
             self.play_button.draw()
             pygame.mouse.set_visible(True)
 

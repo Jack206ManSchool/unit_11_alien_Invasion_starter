@@ -24,8 +24,17 @@ class Settings:
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_temp.png'
         self.alien_w = 40
         self.alien_h = 40
-
         self.fleet_direction = 1
+        self.enemy_start_sounds = [
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav'
+        ]
 
         self.winning_sound = Path.cwd() / 'Assets' / 'sound' / 'won_level.wav'
 

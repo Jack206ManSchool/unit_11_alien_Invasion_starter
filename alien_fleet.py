@@ -1,5 +1,6 @@
 import pygame
 from alien import Alien
+from time import sleep
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -14,9 +15,9 @@ class AlienFleet:
         self.fleet_direction = self.settings.fleet_direction
         self.fleet_drop_speed = self.settings.fleet_drop_speed
 
-        self.create_fleet()
+        self.create_fleet(False)
 
-    def create_fleet(self):
+    def create_fleet(self, start_mode):
         alien_w = self.settings.alien_w
         alien_h = self.settings.alien_h
         screen_w = self.settings.screen_w
@@ -38,7 +39,10 @@ class AlienFleet:
 
         x_offset = (screen_w/2) - (alien_w * (len(custom_fleet_list[0])/2))
 
-        self._create_custom_fleet(alien_w, alien_h, x_offset, y_offset, custom_fleet_list)
+        if(start_mode):
+            self._create_custom_fleet_start(alien_w, alien_h, x_offset, y_offset, custom_fleet_list)
+        else:
+            self._create_custom_fleet(alien_w, alien_h, x_offset, y_offset, custom_fleet_list)
 
     def _create_custom_fleet(self, alien_w, alien_h, x_offset, y_offset, cf_list):
         for row in range(len(cf_list)):
@@ -48,6 +52,21 @@ class AlienFleet:
                 if cf_list[row][col] == 0:
                     continue
                 self._create_alien(current_x, current_y)
+
+    def _create_custom_fleet_start(self, alien_w, alien_h, x_offset, y_offset, cf_list):
+        self.game.finished_intro = True
+        for row in range(len(cf_list)):
+            enemy_row_note = pygame.mixer.Sound(self.settings.enemy_start_sounds[row])
+            enemy_row_note.play()
+            for col in range(len(cf_list[row])):
+                current_x = alien_w * col + x_offset
+                current_y = alien_h * row + y_offset
+                if cf_list[row][col] == 0:
+                    continue
+                self._create_alien(current_x, current_y)
+            self.game._update_screen()
+            sleep(0.3)
+        self.game.finished_intro = False
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         for row in range(fleet_h):
