@@ -38,7 +38,11 @@ class Settings:
 
         self.winning_sound = Path.cwd() / 'Assets' / 'sound' / 'won_level.wav'
 
-        self.button_color = (0, 135, 50)
+        self.button_color = (192, 192, 192)
+        self.button_highlight_color = (255, 255, 255)
+        self.button_shadow_color = (0, 0, 0)
+        self.bar_color = (0, 0, 255)
+        self.button_text_color = (0, 0, 0)
 
         self.text_color = (255, 255, 255)
         self.button_font_size = 48
