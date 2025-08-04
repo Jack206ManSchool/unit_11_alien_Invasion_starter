@@ -14,6 +14,8 @@ class Settings:
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship.png'
         self.ship_w = 40
         self.ship_h = 60
+        self.crashed_file = Path.cwd() / 'Assets' / 'images' / 'laser_blast.png'
+        self.crashed_ship_sound = Path.cwd() / 'Assets' / 'sound' / 'crashed_ship.wav'
        
         self.bullet_w = 25
         self.bullet_h = 80
@@ -37,6 +39,7 @@ class Settings:
         ]
 
         self.winning_sound = Path.cwd() / 'Assets' / 'sound' / 'won_level.wav'
+        self.gameover_sound = Path.cwd() / 'Assets' / 'sound' / 'game_over.wav'
 
         self.button_color = (192, 192, 192)
         self.button_highlight_color = (255, 255, 255)

@@ -38,9 +38,15 @@ class AlienInvasion:
 
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
         self.impact_sound.set_volume(0.7)
+        
+        self.crashed_ship_sound = pygame.mixer.Sound(self.settings.crashed_ship_sound)
+        self.crashed_ship_sound.set_volume(0.7)
 
         self.winning_sound = pygame.mixer.Sound(self.settings.winning_sound)
         self.winning_sound.set_volume(0.8)
+
+        self.gameover_sound = pygame.mixer.Sound(self.settings.gameover_sound)
+        self.gameover_sound.set_volume(0.8)
 
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
@@ -94,9 +100,21 @@ class AlienInvasion:
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level(False)
-            sleep(0.5)
+            self.crashed_ship_sound.play()
+            self.ship.has_crashed = True
+            self._update_screen()
+            sleep(1)
+            self.ship.has_crashed = False
         else:
+            self.crashed_ship_sound.play()
+            self.ship.has_crashed = True
+            self._update_screen()
+            sleep(1)
+            self.gameover_sound.play()
+            sleep(2.0)
+            self.ship.has_crashed = False
             self.game_active = False
+
 
     def _reset_level(self, start_mode):
         self.ship.arsenal.arsenal.empty()

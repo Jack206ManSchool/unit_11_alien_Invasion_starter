@@ -17,11 +17,16 @@ class Ship:
         self.image = pygame.transform.scale(self.image, 
             (self.settings.ship_w, self.settings.ship_h)
         )
+        self.crash_image = pygame.image.load(self.settings.crashed_file)
+        self.crash_image = pygame.transform.scale(self.crash_image, 
+            (self.settings.ship_w, (self.settings.ship_h*0.75))
+        )
 
         self.rect = self.image.get_rect()
         self._center_ship()
         self.moving_right = False
         self.moving_left = False
+        self.has_crashed = False
         self.arsenal = arsenal
 
     def _center_ship(self):
@@ -44,7 +49,10 @@ class Ship:
         
     def draw(self):
         self.arsenal.draw()
-        self.screen.blit(self.image, self.rect)
+        if self.has_crashed:
+            self.screen.blit(self.crash_image, self.rect)
+        else:
+            self.screen.blit(self.image, self.rect)
 
     def fire(self):
         return self.arsenal.fire_bullet()
