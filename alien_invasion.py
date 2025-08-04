@@ -39,6 +39,9 @@ class AlienInvasion:
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
         self.impact_sound.set_volume(0.7)
 
+        self.winning_sound = pygame.mixer.Sound(self.settings.winning_sound)
+        self.winning_sound.set_volume(0.8)
+
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
@@ -82,6 +85,8 @@ class AlienInvasion:
             self.game_stats.update_level()
             # Update HUD view
             self.HUD.update_level()
+            self.winning_sound.play()
+            sleep(1.25)
 
     def _check_game_status(self):
         if self.game_stats.ships_left > 0:

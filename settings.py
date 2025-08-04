@@ -20,7 +20,6 @@ class Settings:
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laser_alt.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'square_laser.wav'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'square_impact.wav'
-        
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_temp.png'
         self.alien_w = 40
@@ -28,7 +27,7 @@ class Settings:
 
         self.fleet_direction = 1
 
-
+        self.winning_sound = Path.cwd() / 'Assets' / 'sound' / 'won_level.wav'
 
         self.button_color = (0, 135, 50)
 
