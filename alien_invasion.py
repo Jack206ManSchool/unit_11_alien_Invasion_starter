@@ -106,7 +106,7 @@ class AlienInvasion:
         pygame.mouse.set_visible(False)
 
     def _update_screen(self):
-        self.screen.blit(self.bg, (0, 0))
+        self._render_Background()
         self.ship.draw()
         self.alien_fleet.draw()
         self.HUD.draw()
@@ -142,7 +142,6 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
             
-
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
@@ -157,6 +156,19 @@ class AlienInvasion:
             self.game_stats.save_scores()
             pygame.quit()
             sys.exit()
+
+    def _render_Background(self):
+        """ Make a background using a continuously repeating image. (uses background.png) """
+        bg_w_counter = 0
+        bg_h_counter = 0
+        bg_image = pygame.image.load(self.settings.bg_file)
+        bg_rect = bg_image.get_rect()
+        while(bg_h_counter <= (self.settings.screen_h)):
+            while(bg_w_counter <= (self.settings.screen_w)):
+                self.screen.blit(bg_image, (bg_w_counter, bg_h_counter))
+                bg_w_counter += bg_rect.width
+            bg_w_counter = 0
+            bg_h_counter += bg_rect.height
 
 if __name__ == "__main__":
     ai = AlienInvasion()
