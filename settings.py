@@ -18,8 +18,8 @@ class Settings:
         self.bullet_w = 25
         self.bullet_h = 80
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laser_alt.png'
-        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'SoundsProvided' / 'laser.mp3'
-        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'SoundsProvided'/ 'impactSound.mp3'
+        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'square_laser.wav'
+        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'square_impact.wav'
         
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_temp.png'
