@@ -55,10 +55,10 @@ class HUD:
         self.max_score_rect.top = self.max_score_rect.bottom
 
     def _update_hi_score(self):
-        hi_score_str = f'Hi-Score: {self.game_stats.hi_score: ,.0f}'
+        hi_score_str = f' Hi-Score: {self.game_stats.hi_score: ,.0f} '
         self.hi_score_image = self.font.render(hi_score_str, False, 
-            self.settings.text_color, None)
-        self.hi_score_rect = self.score_image.get_rect()
+            (0, 0, 128), (128, 128, 128))
+        self.hi_score_rect = self.hi_score_image.get_rect()
         self.hi_score_rect.midtop = (self.boundaries.centerx, self.padding)
 
     def update_level(self):
