@@ -40,7 +40,7 @@ class AlienFleet:
         x_offset = (screen_w/2) - (alien_w * (len(custom_fleet_list[0])/2))
 
         if(start_mode):
-            self._create_custom_fleet_start(alien_w, alien_h, x_offset, y_offset, custom_fleet_list)
+            self._create_custom_fleet_start(alien_w, alien_h, x_offset, y_offset, custom_fleet_list, 0.1)
         else:
             self._create_custom_fleet(alien_w, alien_h, x_offset, y_offset, custom_fleet_list)
 
@@ -53,7 +53,7 @@ class AlienFleet:
                     continue
                 self._create_alien(current_x, current_y)
 
-    def _create_custom_fleet_start(self, alien_w, alien_h, x_offset, y_offset, cf_list):
+    def _create_custom_fleet_start(self, alien_w, alien_h, x_offset, y_offset, cf_list, speed):
         self.game.finished_intro = True
         for row in range(len(cf_list)):
             enemy_row_note = pygame.mixer.Sound(self.settings.enemy_start_sounds[row])
@@ -65,7 +65,7 @@ class AlienFleet:
                     continue
                 self._create_alien(current_x, current_y)
             self.game._update_screen()
-            sleep(0.3)
+            sleep(speed)
         self.game.finished_intro = False
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):

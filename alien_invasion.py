@@ -107,8 +107,8 @@ class AlienInvasion:
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
-        self._reset_level(True)
         self.ship._center_ship()
+        self._reset_level(True)
         self.game_active = True
         pygame.mouse.set_visible(False)
 

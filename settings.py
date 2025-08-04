@@ -27,13 +27,13 @@ class Settings:
         self.fleet_direction = 1
         self.enemy_start_sounds = [
             Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav',
-            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart1.wav'
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart2.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart3.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart4.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart5.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart6.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart7.wav',
+            Path.cwd() / 'Assets' / 'sound' / 'EnemyStart'/ 'EnemyStart8.wav'
         ]
 
         self.winning_sound = Path.cwd() / 'Assets' / 'sound' / 'won_level.wav'
